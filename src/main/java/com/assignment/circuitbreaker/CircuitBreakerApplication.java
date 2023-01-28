@@ -1,10 +1,11 @@
 package com.assignment.circuitbreaker;
 
-/*import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;*/
+import com.assignment.circuitbreaker.circuitBreaker.Foo;
+import com.assignment.circuitbreaker.service.DelayedRemoteService;
+import com.assignment.circuitbreaker.service.MonitoringService;
+import com.assignment.circuitbreaker.service.QuickRemoteService;
 import lombok.extern.slf4j.Slf4j;
 
-//@SpringBootApplication
 @Slf4j
 public class CircuitBreakerApplication {
 
@@ -12,11 +13,11 @@ public class CircuitBreakerApplication {
         var serverStartTime = System.nanoTime();
 
         var delayedService = new DelayedRemoteService(serverStartTime, 5);
-        var delayedServiceCircuitBreaker = new DefaultCircuitBreaker(delayedService, 3000, 2,
+        var delayedServiceCircuitBreaker = new Foo(delayedService, 3000, 2,
                 2000 * 1000 * 1000);
 
         var quickService = new QuickRemoteService();
-        var quickServiceCircuitBreaker = new DefaultCircuitBreaker(quickService, 3000, 2,
+        var quickServiceCircuitBreaker = new Foo(quickService, 3000, 2,
                 2000 * 1000 * 1000);
 
         var monitoringService = new MonitoringService(delayedServiceCircuitBreaker,

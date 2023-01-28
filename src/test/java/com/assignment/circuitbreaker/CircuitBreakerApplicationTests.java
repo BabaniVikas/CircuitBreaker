@@ -1,8 +1,12 @@
 package com.assignment.circuitbreaker;
 
+import com.assignment.circuitbreaker.circuitBreaker.CircuitBreaker;
+import com.assignment.circuitbreaker.circuitBreaker.Foo;
+import com.assignment.circuitbreaker.service.DelayedRemoteService;
+import com.assignment.circuitbreaker.service.MonitoringService;
+import com.assignment.circuitbreaker.service.QuickRemoteService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-//import org.springframework.boot.test.context.SpringBootTest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -25,13 +29,13 @@ class CircuitBreakerApplicationTests {
     void setupCircuitBreakers() {
         var delayedService = new DelayedRemoteService(System.nanoTime(), STARTUP_DELAY);
 
-        delayedServiceCircuitBreaker = new DefaultCircuitBreaker(delayedService, 3000,
+        delayedServiceCircuitBreaker = new Foo(delayedService, 3000,
                 FAILURE_THRESHOLD,
                 RETRY_PERIOD * 1000 * 1000 * 1000);
 
         var quickService = new QuickRemoteService();
 
-        quickServiceCircuitBreaker = new DefaultCircuitBreaker(quickService, 3000, FAILURE_THRESHOLD,
+        quickServiceCircuitBreaker = new Foo(quickService, 3000, FAILURE_THRESHOLD,
                 RETRY_PERIOD * 1000 * 1000 * 1000);
 
         monitoringService = new MonitoringService(delayedServiceCircuitBreaker,

@@ -1,4 +1,6 @@
-package com.assignment.circuitbreaker;
+package com.assignment.circuitbreaker.service;
+
+import com.assignment.circuitbreaker.exception.RemoteServiceException;
 
 public class QuickRemoteService implements RemoteService {
     @Override

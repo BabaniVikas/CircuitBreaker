@@ -1,4 +1,6 @@
-package com.assignment.circuitbreaker;
+package com.assignment.circuitbreaker.circuitBreaker;
+
+import com.assignment.circuitbreaker.exception.RemoteServiceException;
 
 public interface CircuitBreaker {
     public String attemptRequest() throws RemoteServiceException;

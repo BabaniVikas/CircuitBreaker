@@ -1,4 +1,4 @@
-package com.assignment.circuitbreaker;
+package com.assignment.circuitbreaker.circuitBreaker;
 
 public enum State {
         CLOSED,

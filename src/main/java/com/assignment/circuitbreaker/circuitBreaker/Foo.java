@@ -1,6 +1,9 @@
-package com.assignment.circuitbreaker;
+package com.assignment.circuitbreaker.circuitBreaker;
 
-public class DefaultCircuitBreaker implements CircuitBreaker{
+import com.assignment.circuitbreaker.exception.RemoteServiceException;
+import com.assignment.circuitbreaker.service.RemoteService;
+
+public class Foo implements CircuitBreaker{
     public int failureCount;
     private final int failureThreshold;
     private final int futureTime = 1000 * 1000 * 1000 * 1000;
@@ -10,7 +13,7 @@ public class DefaultCircuitBreaker implements CircuitBreaker{
     private final RemoteService service;
     private State state;
     private final long timeout;
-    DefaultCircuitBreaker(RemoteService serviceToCall, long timeout, int failureThreshold,
+    public Foo(RemoteService serviceToCall, long timeout, int failureThreshold,
                           long retryTimePeriod) {
         this.service = serviceToCall;
         this.state = State.CLOSED;

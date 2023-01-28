@@ -1,4 +1,6 @@
-package com.assignment.circuitbreaker;
+package com.assignment.circuitbreaker.service;
+
+import com.assignment.circuitbreaker.exception.RemoteServiceException;
 
 public class DelayedRemoteService implements RemoteService {
     private final long serverStartTime;
